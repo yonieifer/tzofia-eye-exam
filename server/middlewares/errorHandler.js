@@ -15,6 +15,7 @@ export default (err, req, res, next) => {
     else {
         status = 500
         message = "server internal error"
+        console.error(err); 
     }
     res.status(status).json(message)
 }
