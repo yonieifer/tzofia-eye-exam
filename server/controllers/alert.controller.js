@@ -1,4 +1,4 @@
-import { getAll, getAlertById } from "../services/alert.service.js";
+import { getAll, getAlertById, createNewAlert } from "../services/alert.service.js";
 
 export const getAlert = async (req, res) => {
     const id = req.params.id
@@ -9,4 +9,10 @@ export const getAlert = async (req, res) => {
 export const getAllAlerts = async (req, res) => {
     const alerts = await getAll()
     res.json({ alerts })
+}
+
+export const createAlert = async (req, res) => {
+    const alert = req.body.alert
+    const newAlert = await createNewAlert(alert)
+    res.status(201).json({ alert: newAlert })
 }
