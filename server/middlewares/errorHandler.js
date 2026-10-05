@@ -6,16 +6,15 @@ export default (err, req, res, next) => {
     let message = null
     if (err instanceof ZodError) {
         status = 422
-        message = "validation error"
+        message = err.issues[0].message
     }
-    if (err.status && err.message) {
+    else if (err.status && err.message) {
         status = err.status
         message = err.message
     }
     else {
         status = 500
         message = "server internal error"
-        console.error(err); 
     }
     res.status(status).json(message)
 }
