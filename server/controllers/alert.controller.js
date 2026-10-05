@@ -1,4 +1,4 @@
-import { getAll, getAlertById, createNewAlert, removeAlert } from "../services/alert.service.js";
+import { getAll, getAlertById, createNewAlert, removeAlert, updateAlertById } from "../services/alert.service.js";
 
 export const getAlert = async (req, res) => {
     const id = req.params.id
@@ -21,4 +21,11 @@ export const deleteAlert = async (req, res) => {
     const id = req.params.id
     await removeAlert(id)
     res.json({ message: `alert ${id} deleted` })
+}
+
+export const updateAlert = async (req, res) => {
+    const id = req.params.id
+    const alertUpdates = req.body.updates
+    await updateAlertById(id, alertUpdates)
+    res.json({ message: `alert ${id} updated` })
 }

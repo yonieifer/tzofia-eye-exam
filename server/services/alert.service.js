@@ -1,4 +1,4 @@
-import { create, findAll, findById, remove } from "../DAL/alert.dal.js";
+import { create, findAll, findById, remove, update } from "../DAL/alert.dal.js";
 
 export const getAll = async () => {
     const alerts = await findAll()
@@ -21,6 +21,14 @@ export const createNewAlert = async (alert) => {
 export const removeAlert = async (id) => {
     const isDeleted = await remove(id)
     if (!isDeleted) {
+        throw {message: `alert ${id} not found`, status: 404 }
+    }
+    return true
+}
+
+export const updateAlertById = async (id, alertUpdates) => {
+    const updated = await update(id, alertUpdates)
+    if (!updated) {
         throw {message: `alert ${id} not found`, status: 404 }
     }
     return true

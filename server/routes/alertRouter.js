@@ -1,5 +1,5 @@
 import express from "express";
-import { createAlert, deleteAlert, getAlert, getAllAlerts } from "../controllers/alert.controller.js";
+import { createAlert, deleteAlert, getAlert, getAllAlerts, updateAlert } from "../controllers/alert.controller.js";
 import validateBody from "../middlewares/validateBody.js";
 import alertSchema from "../validation/alertSchema.js";
 
@@ -9,5 +9,6 @@ router.get("/:id", getAlert)
 router.get("", getAllAlerts)
 router.post("", validateBody(alertSchema, "alert"), createAlert)
 router.delete("/:id", deleteAlert)
+router.put("/:id", updateAlert)
 
 export default router
