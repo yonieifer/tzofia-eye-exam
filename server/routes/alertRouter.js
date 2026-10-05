@@ -7,8 +7,8 @@ const router = express.Router()
 
 router.get("/:id", getAlert)
 router.get("", getAllAlerts)
-router.post("", validateBody(alertSchema, "alert"), createAlert)
+router.post("", validateBody("alert", alertSchema), createAlert)
 router.delete("/:id", deleteAlert)
-router.put("/:id", updateAlert)
+router.put("/:id", validateBody("updates", alertSchema.partial()), updateAlert)
 
 export default router

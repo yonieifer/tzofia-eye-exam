@@ -5,7 +5,7 @@ export default (err, req, res, next) => {
     let status = null
     let message = null
     if (err instanceof ZodError) {
-        status = 409
+        status = 422
         message = "validation error"
     }
     if (err.status && err.message) {

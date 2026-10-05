@@ -16,11 +16,11 @@ export const create = async (alert) => {
 }
 
 export const remove = async (id) => {
-    const result = await Alert.deleteOne({ id })
+    const result = await Alert.deleteOne({ _id: id })
     return result.deletedCount
 }
 
 export const update = async (id, alertUpdates) => {
-    const updatedAlert = await Alert.findByIdAndUpdate({ id }, { ...alertUpdates }, { returnDocument: "after" })
+    const updatedAlert = await Alert.findByIdAndUpdate({ _id: id }, { ...alertUpdates }, { returnDocument: "after" })
     return updatedAlert
 }
