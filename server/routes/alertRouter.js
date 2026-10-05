@@ -7,6 +7,6 @@ const router = express.Router()
 
 router.get(`/:id`, getAlert)
 router.get("", getAllAlerts)
-router.post("", validateBody(alertSchema), createAlert)
+router.post("", validateBody(alertSchema, "alert"), createAlert)
 
 export default router
