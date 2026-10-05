@@ -1,8 +1,9 @@
 import express from "express";
-import { getAlert } from "../controllers/alert.controller.js";
+import { getAlert, getAllAlerts } from "../controllers/alert.controller.js";
 
 const router = express.Router()
 
 router.get(`/:id`, getAlert)
+router.get("", getAllAlerts)
 
 export default router
