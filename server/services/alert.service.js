@@ -31,5 +31,5 @@ export const updateAlertById = async (id, alertUpdates) => {
     if (!updated) {
         throw {message: `alert ${id} not found`, status: 404 }
     }
-    return true
+    return updated
 }

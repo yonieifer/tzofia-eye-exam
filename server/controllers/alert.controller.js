@@ -26,6 +26,6 @@ export const deleteAlert = async (req, res) => {
 export const updateAlert = async (req, res) => {
     const id = req.params.id
     const alertUpdates = req.body.updates
-    await updateAlertById(id, alertUpdates)
-    res.json({ message: `alert ${id} updated` })
+    const updated = await updateAlertById(id, alertUpdates)
+    res.json({ alert: updated })
 }
