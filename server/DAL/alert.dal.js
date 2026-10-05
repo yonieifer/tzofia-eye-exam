@@ -14,3 +14,8 @@ export const create = async (alert) => {
     const newAlert = await Alert.insertOne(alert)
     return newAlert
 }
+
+export const remove = async (id) => {
+    const result = await Alert.deleteOne({id})
+    return result.deletedCount
+}
