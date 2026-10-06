@@ -12,11 +12,16 @@ function App() {
             <BrowserRouter>
                 <Routes>
                     <Route element={<Layout />}>
+                        <Route path="/login" />
+
                         <Route path="/home" element={<HomePage />} />
                         <Route path="/alert/new" element={<NewAlertPage />} />
                         <Route path="/alert/update/:id" element={<UpdatePage />} />
                         <Route path="/alert/:id" element={<AlertPage />} />
-
+                        <Route element>
+                            <Route path="/register" />
+                            <Route path="/users" />
+                        </Route>
                     </Route>
                 </Routes>
             </BrowserRouter>
