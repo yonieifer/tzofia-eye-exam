@@ -14,7 +14,6 @@ function UsersPage() {
     }, [users]);
     return (
         <>
-            <button onClick={() => navigate("/home")}>Back to Home</button>
             <button onClick={() => navigate("/register")}>
                 Register New User
             </button>

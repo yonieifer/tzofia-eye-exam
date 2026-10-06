@@ -8,23 +8,29 @@ import UpdatePage from "./pages/UpdatePage";
 import LoginPage from "./pages/LoginPage";
 import RegisteredRoutes from "./protectedRoutes/RegisteredRoutes";
 import AdminRoutes from "./protectedRoutes/AdminRoutes";
-import UsersPage from "./pages/UsersPage";
+import AdminPage from "./pages/AdminPage";
 
 function App() {
     return (
         <>
             <BrowserRouter>
                 <Routes>
+                    <Route path="/" element={<LoginPage />} />
                     <Route element={<Layout />}>
-                        <Route path="/" element={<LoginPage />} />
                         <Route element={<RegisteredRoutes />}>
                             <Route path="/home" element={<HomePage />} />
-                            <Route path="/alert/new" element={<NewAlertPage />} />
-                            <Route path="/alert/update/:id" element={<UpdatePage />}/>
+                            <Route
+                                path="/alert/new"
+                                element={<NewAlertPage />}
+                            />
+                            <Route
+                                path="/alert/update/:id"
+                                element={<UpdatePage />}
+                            />
                             <Route path="/alert/:id" element={<AlertPage />} />
-                            <Route element={<AdminRoutes/>}>
-                                <Route path="/users" element={<UsersPage/>}/>
-                                <Route path="/register" />
+                            <Route element={<AdminRoutes />}>
+                                <Route path="/admin" element={<AdminPage />} />
+                                <Route path="admin/register" />
                             </Route>
                         </Route>
                     </Route>

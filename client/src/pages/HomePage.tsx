@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import useAlertsStore from "../store/useAlertsStore";
 import AlertCard from "../components/AlertCard";
 import { useEffect, useState } from "react";
@@ -15,7 +14,6 @@ function MainAlertsPage() {
     const [arena, setArena] = useState<"" | Arena>("");
     const [view, setView] = useState<"map" | "list">("list");
     const { error, isLoading, get } = useAlerts();
-    const navigate = useNavigate();
 
     useEffect(() => {
         get(setFilteredAlerts);
@@ -23,9 +21,6 @@ function MainAlertsPage() {
 
     return (
         <>
-            <button onClick={() => navigate("/alert/new")}>
-                Add New Alert
-            </button>
             <button
                 onClick={() => {
                     setView(view === "list" ? "map" : "list");

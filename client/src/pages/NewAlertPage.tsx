@@ -1,7 +1,6 @@
 import { useState } from "react";
 import useAlerts from "../hooks/useAlerts";
 import type { Arena, Priority, Status } from "../types/alert";
-import { useNavigate } from "react-router-dom";
 
 function NewAlertPage() {
     const [displayName, setDisplayName] = useState("");
@@ -12,11 +11,9 @@ function NewAlertPage() {
     const [lat, setLat] = useState(0);
     const [lon, setLon] = useState(0);
     const { error, isLoading, create } = useAlerts();
-    const navigate = useNavigate();
 
     return (
         <>
-            <button onClick={() => navigate("/home")}>Back to Home</button>
             <form
                 onSubmit={(e) => {
                     e.preventDefault();
