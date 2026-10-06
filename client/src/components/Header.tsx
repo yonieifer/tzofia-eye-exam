@@ -3,6 +3,7 @@ import useAuthStore from "../store/useAuthStore";
 
 function Header() {
     const user = useAuthStore((state) => state.user);
+    const logout = useAuthStore((state) => state.logout);
     return (
         <>
             <h1>Tzofia eye</h1>
@@ -21,6 +22,7 @@ function Header() {
                     </>
                 )}
             </nav>
+            <button onClick={logout}>Logout</button>
         </>
     );
 }

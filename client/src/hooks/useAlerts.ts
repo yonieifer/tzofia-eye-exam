@@ -34,7 +34,7 @@ function useAlerts() {
         api.get("/api/alerts")
             .then((res) => {
                 setAlerts(res.data.alerts);
-                setFilteredAlerts(res.data.alerts)
+                setFilteredAlerts(res.data.alerts)                
             })
             .catch(catchError)
             .finally(() => setLoading(false));
