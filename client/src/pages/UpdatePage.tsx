@@ -37,17 +37,20 @@ function UpdatePage() {
                     value={displayName}
                     onChange={(e) => setDisplayName(e.target.value)}
                     placeholder="display name"
+                    required
                 />
                 <input
                     type="text"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                     placeholder="description"
+                    required
                 />
 
                 <select
                     name="priority"
                     onChange={(e) => setPriority(e.target.value as Priority)}
+                    required
                 >
                     <option value="">--Please choose priority--</option>
                     <option value="Low">Low</option>
@@ -59,16 +62,18 @@ function UpdatePage() {
                 <select
                     name="arena"
                     onChange={(e) => setArena(e.target.value as Arena)}
+                    required
                 >
                     <option value="">--Please choose arena--</option>
                     <option value="North">North</option>
                     <option value="South">South</option>
-                    <option value="Senter">Center</option>
+                    <option value="Center">Center</option>
                 </select>
 
                 <select
                     name="status"
                     onChange={(e) => setStatus(e.target.value as Status)}
+                    required
                 >
                     <option value="">--Please choose status--</option>
                     <option value="Active">Active</option>
@@ -80,12 +85,14 @@ function UpdatePage() {
                     step={0.0001}
                     onChange={(e) => setLat(Number(e.target.value))}
                     placeholder="lat"
+                    required
                 />
                 <input
                     type="number"
                     step={0.0001}
                     onChange={(e) => setLon(Number(e.target.value))}
                     placeholder="lon"
+                    required
                 />
                 <button type="submit">Update</button>
                 {error && <p>{error}</p>}

@@ -13,7 +13,7 @@ function AlertPage() {
     };
     const onDelete = () => {
         remove(id);
-        navigate("/home")
+        navigate("/home");
     };
 
     return (
@@ -33,6 +33,8 @@ function AlertPage() {
                     <p>id: {alert._id}</p>
                     <button onClick={onUpdate}>Update Alert</button>
                     <button onClick={onDelete}>Delete Alert</button>
+                    {error && <p>{error}</p>}
+                    {isLoading && <p>Loading...</p>}
                 </section>
             )}
             {!alert && <h2>alert {id} not found</h2>}

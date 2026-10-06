@@ -66,7 +66,7 @@ function NewAlertPage() {
                     <option value="">--Please choose arena--</option>
                     <option value="North">North</option>
                     <option value="South">South</option>
-                    <option value="Senter">Center</option>
+                    <option value="Center">Center</option>
                 </select>
 
                 <select
