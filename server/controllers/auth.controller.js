@@ -7,7 +7,13 @@ export const register = async (req, res) => {
 }
 
 export const login = async (req, res) => {
-    const {email, password} = req.body
+    const { email, password } = req.body
     const token = await loginUser(email, password)
     res.status(201).json(token)
+}
+
+export const deleteUser = async (req, res) => {
+    const { id } = req.params
+    await removeUser(id)
+    res.json({ message: `user ${id} deleted` })
 }

@@ -7,7 +7,7 @@ export const create = async (user) => {
 
 export const remove = async (id) => {
     const result = await User.deleteOne({ _id: id })
-    return result.deletedCount
+    return result.deletedCount > 0
 }
 
 export const getAllUsers = async () => {

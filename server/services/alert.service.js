@@ -23,7 +23,7 @@ export const removeAlert = async (id) => {
     if (!isDeleted) {
         throw {message: `alert ${id} not found`, status: 404 }
     }
-    return true
+    return isDeleted
 }
 
 export const updateAlertById = async (id, alertUpdates) => {
