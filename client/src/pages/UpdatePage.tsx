@@ -1,9 +1,10 @@
 import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import type { Priority, Arena, Status } from "../types/alert";
 import useAlerts from "../hooks/useAlerts";
-import type { Arena, Priority, Status } from "../types/alert";
-import { useNavigate } from "react-router-dom";
 
-function NewAlertPage() {
+function UpdatePage() {
+    const { id } = useParams();
     const [displayName, setDisplayName] = useState("");
     const [description, setDescription] = useState("");
     const [priority, setPriority] = useState<Priority>("Low");
@@ -11,8 +12,8 @@ function NewAlertPage() {
     const [status, setStatus] = useState<Status>("Active");
     const [lat, setLat] = useState(0);
     const [lon, setLon] = useState(0);
-    const { error, isLoading, create } = useAlerts();
     const navigate = useNavigate();
+    const { error, isLoading, update } = useAlerts();
 
     return (
         <>
@@ -20,7 +21,7 @@ function NewAlertPage() {
             <form
                 onSubmit={(e) => {
                     e.preventDefault();
-                    create({
+                    update(id!, {
                         displayName,
                         description,
                         priority,
@@ -36,20 +37,17 @@ function NewAlertPage() {
                     value={displayName}
                     onChange={(e) => setDisplayName(e.target.value)}
                     placeholder="display name"
-                    required
                 />
                 <input
                     type="text"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                     placeholder="description"
-                    required
                 />
 
                 <select
                     name="priority"
                     onChange={(e) => setPriority(e.target.value as Priority)}
-                    required
                 >
                     <option value="">--Please choose priority--</option>
                     <option value="Low">Low</option>
@@ -61,7 +59,6 @@ function NewAlertPage() {
                 <select
                     name="arena"
                     onChange={(e) => setArena(e.target.value as Arena)}
-                    required
                 >
                     <option value="">--Please choose arena--</option>
                     <option value="North">North</option>
@@ -72,7 +69,6 @@ function NewAlertPage() {
                 <select
                     name="status"
                     onChange={(e) => setStatus(e.target.value as Status)}
-                    required
                 >
                     <option value="">--Please choose status--</option>
                     <option value="Active">Active</option>
@@ -84,16 +80,14 @@ function NewAlertPage() {
                     step={0.0001}
                     onChange={(e) => setLat(Number(e.target.value))}
                     placeholder="lat"
-                    required
                 />
                 <input
                     type="number"
                     step={0.0001}
                     onChange={(e) => setLon(Number(e.target.value))}
                     placeholder="lon"
-                    required
                 />
-                <button type="submit">Create</button>
+                <button type="submit">Update</button>
                 {error && <p>{error}</p>}
                 {isLoading && <p>Loading...</p>}
             </form>
@@ -101,4 +95,4 @@ function NewAlertPage() {
     );
 }
 
-export default NewAlertPage;
+export default UpdatePage;

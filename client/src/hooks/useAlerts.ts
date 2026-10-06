@@ -38,10 +38,13 @@ function useAlerts() {
             .finally(() => setLoading(false));
     };
 
-    const remove = (id: string) => {
+    const remove = (id: string | undefined) => {
+        if (!id) {
+            setError(`${id} not found`)
+        }
         setLoading(true);
         api.delete(`/api/alerts/${id}`)
-            .then(() => deleteAlert(id))
+            .then(() => deleteAlert(id!))
             .catch(catchError)
             .finally(() => setLoading(false));
     };
