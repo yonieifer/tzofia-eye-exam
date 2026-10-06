@@ -3,17 +3,18 @@ import api from "../config/api";
 import useAuthStore from "../store/useAuthStore";
 import type { AxiosError } from "axios";
 import type { User } from "../types/user";
+import { useNavigate } from "react-router-dom";
 
 interface serverError {
     message: string;
 }
 
 function useUsers() {
-    const [data, setdata] = useState<string | null>(null);
     const [msg, setMsg] = useState<string | null>(null);
     const [error, setError] = useState<string | null>(null);
     const [isLoading, setLoading] = useState(false);
     const login = useAuthStore((state) => state.login);
+    const navigate = useNavigate();
 
     const catchError = (err: AxiosError<serverError>) => {
         const serverMsg = err.response?.data?.message;
@@ -58,12 +59,12 @@ function useUsers() {
             .then((res) => {
                 const { user, token } = res.data;
                 login(user, token);
+                navigate("/home");
             })
             .catch(catchError)
             .finally(() => setLoading(false));
     };
     return {
-        data,
         msg,
         error,
         isLoading,
