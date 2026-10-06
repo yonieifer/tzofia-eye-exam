@@ -2,16 +2,8 @@ import { useState } from "react";
 import api from "../config/api";
 import useAlertsStore from "../store/useAlertsStore";
 import type { AxiosError } from "axios";
-
-interface AlertFields {
-    displayName: string;
-    description: string;
-    priority: "Low" | "Medium" | "High" | "Critical";
-    arena: "North" | "South" | "Center";
-    status: "Active" | "Handled";
-    lon: number;
-    lat: number;
-}
+import axios from "axios";
+import type { Alert } from "../types/alert";
 
 interface serverError {
     message: string;
@@ -29,9 +21,9 @@ function useAlerts() {
         setError(typeof serverMsg === "string" ? serverMsg : "server error");
     };
 
-    const create = (alertFields: AlertFields) => {
+    const create = (alert: Alert) => {
         setLoading(true);
-        api.post("/api/alerts", { alert: alertFields })
+        api.post("/api/alerts", { alert })
             .then((res) => addAlert(res.data.alert))
             .catch(catchError)
             .finally(() => setLoading(false));
@@ -39,8 +31,10 @@ function useAlerts() {
 
     const get = () => {
         setLoading(true);
-        api.get(`/api/alerts`)
-            .then((res) => setAlerts(res.data.alerts))
+        api.get("/api/alerts")
+            .then((res) => {                
+                setAlerts(res.data.alerts);
+            })
             .catch(catchError)
             .finally(() => setLoading(false));
     };

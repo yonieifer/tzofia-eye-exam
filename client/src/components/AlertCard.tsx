@@ -7,6 +7,7 @@ function AlertCard({ alert }: { alert: Alert }) {
             <h3>{alert.priority}</h3>
             <p>Status: {alert.status}</p>
             <p>arena: {alert.arena}</p>
+            <button>View Alert</button>
         </article>
     );
 }

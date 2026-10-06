@@ -1,7 +1,7 @@
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import "./App.css";
 import Layout from "./Layout";
-import MainAlertsPage from "./pages/MainAlertsPage";
+import HomePage from "./pages/HomePage";
 
 function App() {
     return (
@@ -9,7 +9,7 @@ function App() {
             <BrowserRouter>
                 <Routes>
                     <Route element={<Layout />}>
-                        <Route path="/alerts" element={<MainAlertsPage />} />
+                        <Route path="/alerts" element={<HomePage />} />
                     </Route>
                 </Routes>
             </BrowserRouter>
