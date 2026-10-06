@@ -17,7 +17,7 @@ export const createUser = async (user) => {
         assignedArena: user.assignedArena,
     }
     const token = generateToken(payload)
-    return { newUser, token }
+    return { userToReturn, token }
 }
 
 export const loginUser = async (email, password) => {
@@ -36,7 +36,7 @@ export const loginUser = async (email, password) => {
         assignedArena: user.assignedArena
     }
     const token = generateToken(payload)
-    return token 
+    return token
 }
 
 export const removeUser = async (id) => {
@@ -45,6 +45,15 @@ export const removeUser = async (id) => {
         throw { message: `user ${id} not registered`, status: 404 }
     }
     return isDeleted
+}
+
+export const findUser = async (user) => {
+    const user = await findByEmail(user.email)
+    if (!user) {
+        throw { message: `user ${id} not registered`, status: 404 }
+    }
+    const { password, ...userToReturn } = user
+    return userToReturn
 }
 
 
