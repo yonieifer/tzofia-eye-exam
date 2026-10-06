@@ -1,4 +1,4 @@
-import { createUser, loginUser } from "../services/user.service.js"
+import { createUser, loginUser, removeUser, findUser, findAllUsers } from "../services/user.service.js"
 
 export const register = async (req, res) => {
     const { user } = req.body
@@ -22,4 +22,9 @@ export const getUser = async (req, res) => {
     const { user } = req.body
     const userToReturn = await findUser(user)
     res.json({ user: userToReturn })
+}
+
+export const getAllUsers = async (req, res) => {
+    const allUsers = await findAllUsers()
+    res.json({ users: allUsers })
 }

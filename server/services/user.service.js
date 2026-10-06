@@ -1,5 +1,5 @@
 import bcrypt from "bcryptjs"
-import { findByEmail, create, remove } from "../DAL/user.dal.js"
+import { findByEmail, create, remove, getAllUsers } from "../DAL/user.dal.js"
 import generateToken from "../utils/generateToken"
 
 export const createUser = async (user) => {
@@ -54,6 +54,15 @@ export const findUser = async (user) => {
     }
     const { password, ...userToReturn } = user
     return userToReturn
+}
+
+export const findAllUsers = async () => {
+    const allUsers = await getAllUsers()
+    const saveUsers = allUsers.map(user => {
+        const {password, ...userData} = user
+        return userData
+    })
+    return allUsers
 }
 
 
