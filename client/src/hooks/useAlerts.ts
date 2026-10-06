@@ -28,11 +28,12 @@ function useAlerts() {
             .finally(() => setLoading(false));
     };
 
-    const get = () => {
+    const get = (setFilteredAlerts: (alerts: Alert[]) => void) => {
         setLoading(true);
         api.get("/api/alerts")
             .then((res) => {
                 setAlerts(res.data.alerts);
+                setFilteredAlerts(res.data.alerts)
             })
             .catch(catchError)
             .finally(() => setLoading(false));

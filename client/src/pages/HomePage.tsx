@@ -18,7 +18,7 @@ function MainAlertsPage() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        get();
+        get(setFilteredAlerts);
     }, []);
 
     return (

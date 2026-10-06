@@ -23,21 +23,21 @@ function AlertPage() {
                     <button onClick={() => navigate("/home")}>
                         Back to Home
                     </button>
-                    <h1>alert display: {alert.displayName}</h1>
-                    <h2>arena: {alert.arena}</h2>
+                    <h1>Alert Display: {alert.displayName}</h1>
+                    <h2>Arena: {alert.arena}</h2>
                     <p>{alert.description}</p>
-                    <p>priority: {alert.priority}</p>
-                    <p>status: {alert.status}</p>
-                    <p>lon: {alert.lon}</p>
-                    <p>lat: {alert.lat}</p>
-                    <p>id: {alert._id}</p>
+                    <p>Priority: {alert.priority}</p>
+                    <p>Status: {alert.status}</p>
+                    <p>Lon: {alert.lon}</p>
+                    <p>Lat: {alert.lat}</p>
+                    <p>ID: {alert._id}</p>
                     <button onClick={onUpdate}>Update Alert</button>
                     <button onClick={onDelete}>Delete Alert</button>
                     {error && <p>{error}</p>}
                     {isLoading && <p>Loading...</p>}
                 </section>
             )}
-            {!alert && <h2>alert {id} not found</h2>}
+            {!alert && <h2>Alert {id} not found</h2>}
         </>
     );
 }
