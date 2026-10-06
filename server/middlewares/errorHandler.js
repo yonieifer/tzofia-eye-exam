@@ -1,4 +1,5 @@
 import { ZodError } from "zod"
+import jwt from "jsonwebtoken"
 
 
 export default (err, req, res, next) => {
@@ -8,7 +9,11 @@ export default (err, req, res, next) => {
         status = 422
         message = err.issues[0].message
         console.log(err);
-        
+
+    }
+    else if (err instanceof jwt.TokenExpiredError || err instanceof jwt.TokenExpiredError) {
+        status = 403
+        message = "Invalid or expired token"
     }
     else if (err.status && err.message) {
         status = err.status

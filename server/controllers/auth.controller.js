@@ -1,7 +1,7 @@
 import { createUser, loginUser, removeUser, findUser, findAllUsers } from "../services/user.service.js"
 
 export const register = async (req, res) => {
-    const { user } = req.body
+    const user = req.user
     const { userToReturn, token } = await createUser(user)
     res.status(201).json({ user: newUser, token })
 }
@@ -19,7 +19,7 @@ export const deleteUser = async (req, res) => {
 }
 
 export const getUser = async (req, res) => {
-    const { user } = req.body
+    const user = req.user
     const userToReturn = await findUser(user)
     res.json({ user: userToReturn })
 }
