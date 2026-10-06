@@ -13,4 +13,6 @@ export type Alert = {
     status: Status;
     lon: number;
     lat: number;
+    createdAt?: Date;
+    updatedAt?: Date;
 };

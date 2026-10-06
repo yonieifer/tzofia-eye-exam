@@ -32,6 +32,6 @@ const alertSchema = new Schema({
         type: Number,
         required: true
     }
-})
+}, { timestamps: true })
 
 export const Alert = mongoose.model("Alert", alertSchema)

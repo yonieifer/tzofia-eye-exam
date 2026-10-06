@@ -5,6 +5,7 @@ import type { Alert, Priority, Arena } from "../types/alert";
 import FilteredSearch from "../components/FilteredSearch";
 import AlertsMap, { type MapAlert } from "../components/AlertsMap";
 import useAlerts from "../hooks/useAlerts";
+import attackWarning from "../services/attackWarning";
 
 function MainAlertsPage() {
     const alerts = useAlertsStore((state) => state.alerts);
@@ -14,10 +15,16 @@ function MainAlertsPage() {
     const [arena, setArena] = useState<"" | Arena>("");
     const [view, setView] = useState<"map" | "list">("list");
     const { error, isLoading, get } = useAlerts();
+    const [isAttackAlert, setAttackAlert] = useState(false);
 
     useEffect(() => {
         get(setFilteredAlerts);
     }, []);
+
+    useEffect(() => {
+        const isAttack = attackWarning(alerts);
+        setAttackAlert(isAttack);
+    }, [alerts]);
 
     return (
         <>
@@ -28,6 +35,11 @@ function MainAlertsPage() {
             >
                 {view === "list" ? "Map " : "List"}
             </button>
+            {isAttackAlert && (
+                <section>
+                    <h1>התראת התקפה רב זירתית</h1>
+                </section>
+            )}
             <FilteredSearch
                 search={search}
                 setSearch={setSearch}
