@@ -11,10 +11,11 @@ export const createUser = async (user) => {
     const newUser = await create({ ...user, password: hashedPassword })
     const { password, ...userToReturn } = newUser
     const payload = {
-        email: user.email,
-        username: user.username,
-        role: user.role,
-        assignedArena: user.assignedArena,
+        id: newUser._id,
+        email: newUser.email,
+        username: newUser.username,
+        role: newUser.role,
+        assignedArena: newUser.assignedArena,
     }
     const token = generateToken(payload)
     return { userToReturn, token }
@@ -30,6 +31,7 @@ export const loginUser = async (email, password) => {
         throw { message: `password incorrect`, status: 400 }
     }
     const payload = {
+        id: user._id,
         email: user.email,
         username: user.username,
         role: user.role,
@@ -59,7 +61,7 @@ export const findUser = async (user) => {
 export const findAllUsers = async () => {
     const allUsers = await getAllUsers()
     const saveUsers = allUsers.map(user => {
-        const {password, ...userData} = user
+        const { password, ...userData } = user
         return userData
     })
     return allUsers
