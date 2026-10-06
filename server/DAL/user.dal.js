@@ -1,16 +1,16 @@
 import { User } from "../models/user.js";
 
-const create = async (user) => {
+export const create = async (user) => {
     const newUser = await User.insertOne(user)
     return newUser
 }
 
-const remove = async (id) => {
+export const remove = async (id) => {
     const result = await User.deleteOne({ _id: id })
     return result.deletedCount
 }
 
-const getAllUsers = async () => {
+export const getAllUsers = async () => {
     const users = await User.find()
     return users
 }
