@@ -9,6 +9,7 @@ import LoginPage from "./pages/LoginPage";
 import RegisteredRoutes from "./protectedRoutes/RegisteredRoutes";
 import AdminRoutes from "./protectedRoutes/AdminRoutes";
 import AdminPage from "./pages/AdminPage";
+import RegisterPage from "./pages/RegisterPage";
 
 function App() {
     return (
@@ -30,7 +31,7 @@ function App() {
                             <Route path="/alert/:id" element={<AlertPage />} />
                             <Route element={<AdminRoutes />}>
                                 <Route path="/admin" element={<AdminPage />} />
-                                <Route path="admin/register" />
+                                <Route path="admin/register" element={<RegisterPage/>}/>
                             </Route>
                         </Route>
                     </Route>

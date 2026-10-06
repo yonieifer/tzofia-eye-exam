@@ -17,6 +17,7 @@ function useAlerts() {
 
     const catchError = (err: AxiosError<serverError>) => {
         const serverMsg = err.response?.data?.message;
+        console.log(err);
         setError(typeof serverMsg === "string" ? serverMsg : "server error");
     };
 
