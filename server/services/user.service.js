@@ -19,3 +19,22 @@ export const createUser = async (user) => {
     const token = generateToken(payload)
     return { newUser, token }
 }
+
+export const loginUser = async (email, password) => {
+    const user = await findByEmail(email)
+    if (!user) {
+        throw { message: `user ${id} not registered`, status: 404 }
+    }
+    const isCorrectPasword = await bcrypt.compare(password, user.password)
+    if (!isCorrectPasword) {
+        throw { message: `password incorrect`, status: 400 }
+    }
+    const payload = {
+        email: user.email,
+        username: user.username,
+        role: user.role,
+        assignedArena: user.assignedArena
+    }
+    const token = generateToken(payload)
+    return token 
+}

@@ -1,10 +1,10 @@
 import express from "express"
-import { createUser } from "../services/user.service.js
+import { login, register } from "../controllers/auth.controller.js"
 
 const router = express.Router()
 
-router.post("/register", async (req, res) => {
-    const { user } = req.body
-    const { newUser, token } = await createUser(user)
-    res.status(201).json({ user: newUser, token })
-})
+router.post("/register", register)
+router.post("/login", login)
+
+
+export default router
