@@ -1,15 +1,12 @@
 import React from "react";
 import type { Alert, Priority, Arena } from "../types/alert";
+import type { SearchState } from "../pages/HomePage";
 
-interface FilteredSearchProps {
-    search: string;
-    setSearch: React.Dispatch<React.SetStateAction<string>>;
+interface SearchProps {
+    search: SearchState;
+    setSearch: React.Dispatch<React.SetStateAction<SearchState>>;
     alerts: Alert[];
     setFilteredAlerts: React.Dispatch<React.SetStateAction<Alert[]>>;
-    priority: "" | Priority;
-    setPriority: React.Dispatch<React.SetStateAction<"" | Priority>>;
-    arena: "" | Arena;
-    setArena: React.Dispatch<React.SetStateAction<"" | Arena>>;
 }
 
 function FilteredSearch({
@@ -17,22 +14,24 @@ function FilteredSearch({
     setSearch,
     alerts,
     setFilteredAlerts,
-    priority,
-    setPriority,
-    arena,
-    setArena,
-}: FilteredSearchProps) {
+}: SearchProps) {
     return (
         <>
             <input
                 type="text"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
+                value={search.name}
+                onChange={(e) => setSearch({ ...search, name: e.target.value })}
+                placeholder="name"
             />
 
             <select
                 name="priority"
-                onChange={(e) => setPriority(e.target.value as Priority)}
+                onChange={(e) =>
+                    setSearch({
+                        ...search,
+                        priority: e.target.value as Priority,
+                    })
+                }
             >
                 <option value="">--Please choose priority--</option>
                 <option value="Low">Low</option>
@@ -43,7 +42,12 @@ function FilteredSearch({
 
             <select
                 name="arena"
-                onChange={(e) => setArena(e.target.value as Arena)}
+                onChange={(e) =>
+                    setSearch({
+                        ...search,
+                        arena: e.target.value as Arena,
+                    })
+                }
             >
                 <option value="">--Please choose arena--</option>
                 <option value="North">North</option>
@@ -54,20 +58,20 @@ function FilteredSearch({
             <button
                 onClick={() => {
                     let filtered = alerts;
-                    if (search) {
+                    if (search.name) {
                         filtered = filtered.filter((alert) =>
-                            alert.displayName.startsWith(search),
+                            alert.displayName.startsWith(search.name),
                         );
                     }
 
-                    if (priority) {
+                    if (search.priority) {
                         filtered = filtered.filter(
-                            (alert) => alert.priority === priority,
+                            (alert) => alert.priority === search.priority,
                         );
                     }
-                    if (arena) {
+                    if (search.arena) {
                         filtered = filtered.filter(
-                            (alert) => alert.arena === arena,
+                            (alert) => alert.arena === search.arena,
                         );
                     }
                     setFilteredAlerts(filtered);
