@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import useAlerts from "../hooks/useAlerts";
 import type { Arena, Priority, Status } from "../types/alert";
 import { useNavigate } from "react-router-dom";

@@ -14,5 +14,5 @@ export default create<AlertsState>()((set) => ({
         set((state) => ({ alerts: [...state.alerts, newAlert] })),
     setAlerts: (alerts) => set({ alerts: alerts }),
     deleteAlert: (id) =>
-        set((state) => ({ alerts: state.alerts.filter((a) => a.id !== id) })),
+        set((state) => ({ alerts: state.alerts.filter((a) => a._id !== id) })),
 }));

@@ -3,6 +3,7 @@ import "./App.css";
 import Layout from "./Layout";
 import HomePage from "./pages/HomePage";
 import NewAlertPage from "./pages/NewAlertPage";
+import AlertPage from "./pages/AlertPage";
 
 function App() {
     return (
@@ -11,7 +12,8 @@ function App() {
                 <Routes>
                     <Route element={<Layout />}>
                         <Route path="/home" element={<HomePage />} />
-                        <Route path="/new-alert" element={<NewAlertPage />} />
+                        <Route path="/alert/new" element={<NewAlertPage />} />
+                        <Route path="/alert/:id" element={<AlertPage />} />
                     </Route>
                 </Routes>
             </BrowserRouter>

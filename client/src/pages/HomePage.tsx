@@ -23,13 +23,11 @@ function MainAlertsPage() {
 
     return (
         <>
-            <button onClick={() => navigate("/new-alert")}>
+            <button onClick={() => navigate("/alert/new")}>
                 Add New Alert
             </button>
             <button
                 onClick={() => {
-                    console.log(typeof alerts[0].lat);
-
                     setView(view === "list" ? "map" : "list");
                 }}
             >
@@ -50,7 +48,7 @@ function MainAlertsPage() {
                     {error && <h2>{error}</h2>}
                     {isLoading && <h2>Loading...</h2>}
                     {filteredAlerts.map((alert) => (
-                        <AlertCard alert={alert} key={alert.id} />
+                        <AlertCard alert={alert} key={alert._id} />
                     ))}
                 </ul>
             )}

@@ -46,9 +46,9 @@ function FilteredSearch({
                 onChange={(e) => setArena(e.target.value as Arena)}
             >
                 <option value="">--Please choose arena--</option>
-                <option value="north">North</option>
-                <option value="south">South</option>
-                <option value="center">Center</option>
+                <option value="North">North</option>
+                <option value="South">South</option>
+                <option value="Center">Center</option>
             </select>
 
             <button
