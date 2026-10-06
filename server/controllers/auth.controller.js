@@ -2,20 +2,20 @@ import { createUser, loginUser, removeUser, findUser, findAllUsers } from "../se
 
 export const register = async (req, res) => {
     const user = req.user
-    const { userToReturn, token } = await createUser(user)
-    res.status(201).json({ user: newUser, token })
+    await createUser(user)
+    res.status(201).json({ message: "User registered successfully" })
 }
 
 export const login = async (req, res) => {
     const { email, password } = req.body
-    const token = await loginUser(email, password)
-    res.status(201).json(token)
+    const { payload, token } = await loginUser(email, password)
+    res.status(201).json({ user: payload, token })
 }
 
 export const deleteUser = async (req, res) => {
     const { id } = req.params
     await removeUser(id)
-    res.json({ message: `user ${id} deleted` })
+    res.json({ message: `User ${id} deleted successfully` })
 }
 
 export const getUser = async (req, res) => {

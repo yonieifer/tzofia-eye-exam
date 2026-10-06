@@ -9,16 +9,7 @@ export const createUser = async (user) => {
     }
     const hashedPassword = await bcrypt.hash(user.password, 12)
     const newUser = await create({ ...user, password: hashedPassword })
-    const { password, ...userToReturn } = newUser
-    const payload = {
-        id: newUser._id,
-        email: newUser.email,
-        username: newUser.username,
-        role: newUser.role,
-        assignedArena: newUser.assignedArena,
-    }
-    const token = generateToken(payload)
-    return { userToReturn, token }
+    return newUser
 }
 
 export const loginUser = async (email, password) => {
@@ -38,7 +29,7 @@ export const loginUser = async (email, password) => {
         assignedArena: user.assignedArena
     }
     const token = generateToken(payload)
-    return token
+    return { payload, token }
 }
 
 export const removeUser = async (id) => {
