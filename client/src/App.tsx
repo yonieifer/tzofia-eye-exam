@@ -8,6 +8,7 @@ import UpdatePage from "./pages/UpdatePage";
 import LoginPage from "./pages/LoginPage";
 import RegisteredRoutes from "./protectedRoutes/RegisteredRoutes";
 import AdminRoutes from "./protectedRoutes/AdminRoutes";
+import UsersPage from "./pages/UsersPage";
 
 function App() {
     return (
@@ -22,8 +23,8 @@ function App() {
                             <Route path="/alert/update/:id" element={<UpdatePage />}/>
                             <Route path="/alert/:id" element={<AlertPage />} />
                             <Route element={<AdminRoutes/>}>
+                                <Route path="/users" element={<UsersPage/>}/>
                                 <Route path="/register" />
-                                <Route path="/users" />
                             </Route>
                         </Route>
                     </Route>
