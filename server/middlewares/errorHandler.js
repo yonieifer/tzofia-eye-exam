@@ -9,7 +9,6 @@ export default (err, req, res, next) => {
         status = 422
         message = err.issues[0].message
         console.log(err);
-
     }
     else if (err instanceof jwt.TokenExpiredError || err instanceof jwt.TokenExpiredError) {
         status = 403

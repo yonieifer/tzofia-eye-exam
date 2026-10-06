@@ -11,5 +11,4 @@ router.delete("/users/:id", authenticateJWT, authAdmin, deleteUser)
 router.post("/login", login)
 router.get("/me", authenticateJWT, getUser)
 
-
 export default router
