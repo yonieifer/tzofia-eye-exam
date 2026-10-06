@@ -14,8 +14,6 @@ function useUsers() {
     const [error, setError] = useState<string | null>(null);
     const [isLoading, setLoading] = useState(false);
     const login = useAuthStore((state) => state.login);
-    const logout = useAuthStore((state) => state.logout);
-    const user = useAuthStore((state) => state.user);
 
     const catchError = (err: AxiosError<serverError>) => {
         const serverMsg = err.response?.data?.message;
@@ -25,7 +23,7 @@ function useUsers() {
     const create = (user: User) => {
         setLoading(true);
         api.post("/api/auth/register", { user })
-            .then(() => setMsg("User registered successfully"))
+            .then((res) => setMsg(res.data.message))
             .catch(catchError)
             .finally(() => setLoading(false));
     };
@@ -49,7 +47,7 @@ function useUsers() {
     const remove = (id: string) => {
         setLoading(true);
         api.delete(`/api/auth/users/${id}`)
-            .then(() => setMsg("User deleted successfully"))
+            .then((res) => setMsg(res.data.message))
             .catch(catchError)
             .finally(() => setLoading(false));
     };
@@ -57,11 +55,24 @@ function useUsers() {
     const loginUser = (email: string, password: any) => {
         setLoading(true);
         api.post(`/api/auth/login`, { email, password })
-            .then((res) => login(res.data.token))
+            .then((res) => {
+                const { user, token } = res.data;
+                login(user, token);
+            })
             .catch(catchError)
             .finally(() => setLoading(false));
     };
-    return { error, isLoading, create, get, remove, update };
+    return {
+        data,
+        msg,
+        error,
+        isLoading,
+        create,
+        getAll,
+        getOne,
+        remove,
+        loginUser,
+    };
 }
 
 export default useUsers;
