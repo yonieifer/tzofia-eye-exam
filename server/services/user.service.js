@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs"
 import { findByEmail, create, remove, getAllUsers } from "../DAL/user.dal.js"
-import generateToken from "../utils/generateToken"
+import generateToken from "../utils/generateToken.js"
 
 export const createUser = async (user) => {
     const userExsit = await findByEmail(user.email)
@@ -40,8 +40,8 @@ export const removeUser = async (id) => {
     return isDeleted
 }
 
-export const findUser = async (user) => {
-    const user = await findByEmail(user.email)
+export const findUser = async (userToFind) => {
+    const user = await findByEmail(userToFind.email)
     if (!user) {
         throw { message: `user ${id} not registered`, status: 404 }
     }

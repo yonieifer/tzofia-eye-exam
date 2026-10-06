@@ -8,7 +8,12 @@ function LoginPage() {
 
     return (
         <>
-            <form onSubmit={() => loginUser(email, password)}>
+            <form
+                onSubmit={(e) => {
+                    e.preventDefault()
+                    loginUser(email, password);
+                }}
+            >
                 <input
                     type="email"
                     value={email}
