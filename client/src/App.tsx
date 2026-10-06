@@ -2,6 +2,7 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import "./App.css";
 import Layout from "./Layout";
 import HomePage from "./pages/HomePage";
+import NewAlertPage from "./pages/NewAlertPage";
 
 function App() {
     return (
@@ -9,12 +10,12 @@ function App() {
             <BrowserRouter>
                 <Routes>
                     <Route element={<Layout />}>
-                        <Route path="/alerts" element={<HomePage />} />
+                        <Route path="/home" element={<HomePage />} />
+                        <Route path="/new-alert" element={<NewAlertPage />} />
                     </Route>
                 </Routes>
             </BrowserRouter>
         </>
     );
 }
-
 export default App;

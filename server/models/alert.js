@@ -25,11 +25,11 @@ const alertSchema = new Schema({
         enum: ["Active", "Handled"],
     },
     lon: {
-        type: String,
+        type: Number,
         required: true
     },
     lat: {
-        type: String,
+        type: Number,
         required: true
     }
 })

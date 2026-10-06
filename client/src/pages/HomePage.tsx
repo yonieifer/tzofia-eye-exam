@@ -4,7 +4,7 @@ import AlertCard from "../components/AlertCard";
 import { useEffect, useState } from "react";
 import type { Alert, Priority, Arena } from "../types/alert";
 import FilteredSearch from "../components/FilteredSearch";
-import AlertsMap from "../components/AlertsMap";
+import AlertsMap, { type MapAlert } from "../components/AlertsMap";
 import useAlerts from "../hooks/useAlerts";
 
 function MainAlertsPage() {
@@ -26,7 +26,13 @@ function MainAlertsPage() {
             <button onClick={() => navigate("/new-alert")}>
                 Add New Alert
             </button>
-            <button onClick={() => setView(view === "list" ? "map" : "list")}>
+            <button
+                onClick={() => {
+                    console.log(typeof alerts[0].lat);
+
+                    setView(view === "list" ? "map" : "list");
+                }}
+            >
                 {view === "list" ? "Map " : "List"}
             </button>
             <FilteredSearch
@@ -48,7 +54,9 @@ function MainAlertsPage() {
                     ))}
                 </ul>
             )}
-            {view === "map" && <AlertsMap alerts={filteredAlerts} />}
+            {view === "map" && (
+                <AlertsMap alerts={filteredAlerts as MapAlert[]} />
+            )}
         </>
     );
 }

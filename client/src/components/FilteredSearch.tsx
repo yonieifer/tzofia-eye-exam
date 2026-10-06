@@ -41,7 +41,10 @@ function FilteredSearch({
                 <option value="Critical">Critical</option>
             </select>
 
-            <select name="arena" onChange={(e) => setArena(e.target.value as Arena)}>
+            <select
+                name="arena"
+                onChange={(e) => setArena(e.target.value as Arena)}
+            >
                 <option value="">--Please choose arena--</option>
                 <option value="north">North</option>
                 <option value="south">South</option>
@@ -49,18 +52,26 @@ function FilteredSearch({
             </select>
 
             <button
-                onClick={() =>
-                    setFilteredAlerts(
-                        alerts.filter(
-                            (alert) =>
-                                alert.displayName.startsWith(search) &&
-                                (priority
-                                    ? alert.priority === priority
-                                    : true) &&
-                                (arena ? alert.arena === arena : true),
-                        ),
-                    )
-                }
+                onClick={() => {
+                    let filtered = alerts;
+                    if (search) {
+                        filtered = filtered.filter((alert) =>
+                            alert.displayName.startsWith(search),
+                        );
+                    }
+
+                    if (priority) {
+                        filtered = filtered.filter(
+                            (alert) => alert.priority === priority,
+                        );
+                    }
+                    if (arena) {
+                        filtered = filtered.filter(
+                            (alert) => alert.arena === arena,
+                        );
+                    }
+                    setFilteredAlerts(filtered);
+                }}
             >
                 Search
             </button>

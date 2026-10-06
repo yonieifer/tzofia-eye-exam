@@ -7,6 +7,8 @@ export default (err, req, res, next) => {
     if (err instanceof ZodError) {
         status = 422
         message = err.issues[0].message
+        console.log(err);
+        
     }
     else if (err.status && err.message) {
         status = err.status

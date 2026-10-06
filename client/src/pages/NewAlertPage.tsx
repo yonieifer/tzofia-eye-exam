@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import useAlerts from "../hooks/useAlerts";
 import type { Arena, Priority, Status } from "../types/alert";
+import { useNavigate } from "react-router-dom";
 
 function NewAlertPage() {
     const [displayName, setDisplayName] = useState("");
@@ -11,11 +12,14 @@ function NewAlertPage() {
     const [lat, setLat] = useState(0);
     const [lon, setLon] = useState(0);
     const { error, isLoading, create } = useAlerts();
+    const navigate = useNavigate();
 
     return (
         <>
+            <button onClick={() => navigate("/home")}>Back to Home</button>
             <form
-                onSubmit={() =>
+                onSubmit={(e) => {
+                    e.preventDefault();
                     create({
                         displayName,
                         description,
@@ -24,8 +28,8 @@ function NewAlertPage() {
                         status,
                         lat,
                         lon,
-                    })
-                }
+                    });
+                }}
             >
                 <input
                     type="text"
@@ -56,9 +60,9 @@ function NewAlertPage() {
                     onChange={(e) => setArena(e.target.value as Arena)}
                 >
                     <option value="">--Please choose arena--</option>
-                    <option value="north">North</option>
-                    <option value="south">South</option>
-                    <option value="center">Center</option>
+                    <option value="North">North</option>
+                    <option value="South">South</option>
+                    <option value="Senter">Center</option>
                 </select>
 
                 <select
@@ -72,11 +76,13 @@ function NewAlertPage() {
 
                 <input
                     type="number"
+                    step={0.0001}
                     onChange={(e) => setLat(Number(e.target.value))}
                     placeholder="lat"
                 />
                 <input
                     type="number"
+                    step={0.0001}
                     onChange={(e) => setLon(Number(e.target.value))}
                     placeholder="lon"
                 />

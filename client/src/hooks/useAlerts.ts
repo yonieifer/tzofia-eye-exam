@@ -2,7 +2,6 @@ import { useState } from "react";
 import api from "../config/api";
 import useAlertsStore from "../store/useAlertsStore";
 import type { AxiosError } from "axios";
-import axios from "axios";
 import type { Alert } from "../types/alert";
 
 interface serverError {
@@ -32,7 +31,7 @@ function useAlerts() {
     const get = () => {
         setLoading(true);
         api.get("/api/alerts")
-            .then((res) => {                
+            .then((res) => {
                 setAlerts(res.data.alerts);
             })
             .catch(catchError)
